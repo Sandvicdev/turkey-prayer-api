@@ -1,23 +1,25 @@
 function calculateCountdown(maghribTime) {
   const now = new Date();
 
-  const [hour, minute] = maghribTime.split(":");
+  const [hour, minute] = maghribTime.split(":").map(Number);
 
   const iftar = new Date();
-  iftar.setHours(hour);
-  iftar.setMinutes(minute);
-  iftar.setSeconds(0);
+  iftar.setHours(hour, minute, 0, 0);
 
-  if (iftar < now) {
-    return "İftar vakti geçti";
+  // Eğer iftar geçtiyse yarının iftarını ayarla
+  if (now >= iftar) {
+    iftar.setDate(iftar.getDate() + 1);
   }
 
   const diff = iftar - now;
 
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const totalSeconds = Math.floor(diff / 1000);
 
-  return `${hours} saat ${minutes} dakika kaldı`;
+  const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+  const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+  const seconds = String(totalSeconds % 60).padStart(2, "0");
+
+  return `${hours}:${minutes}:${seconds}`;
 }
 
 module.exports = { calculateCountdown };
