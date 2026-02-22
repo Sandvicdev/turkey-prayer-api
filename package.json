@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Sandvicdev/turkey-prayer-api#readme",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "dependencies": {
     "adhan-time-turkiye": "^2.0.5",
