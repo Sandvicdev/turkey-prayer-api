@@ -22,6 +22,7 @@
     "node": "18.x"
   },
   "dependencies": {
+    "adhan-time-turkiye": "^2.0.5",
     "axios": "^1.13.5",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
